@@ -8,7 +8,8 @@ const PORT = 9000;
 
 const app = express();
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose.connect("mongodb+srv://taskapp:taskapp@websitewaitlist.xccqkrl.mongodb.net/?retryWrites=true&w=majority&appName=websitewaitlist")
 
