@@ -3,6 +3,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const Task = require('./Model/Task');
+const Register = require('./Model/Register');
 
 const PORT = 9000;
 
@@ -39,6 +40,32 @@ const newTask = new Task({
 
    console.log(savedTask);
    res.status(201).json(savedTask);
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).statusMessage("Somehting happend wrong");
+    }
+});
+
+
+app.post("/register", async (req,res)=>{
+    try {
+      
+       const {name,email,goals,mobile,kidsage} = req.body;
+     
+  
+const newregister = new Register({
+    name: name,
+    email: email,
+    goals: goals,
+    kidsage: kidsage,
+    mobile: mobile
+   });
+   
+   const savedRegister = await newregister.save();
+
+   console.log(savedRegister);
+   res.status(201).json(savedRegister);
         
     } catch (error) {
         console.log(error);
